@@ -7,27 +7,6 @@ import SearchParams from "./SearchParams";
 import Details from "./Details";
 import AdoptedPetContext from "./AdoptedPetContext";
 
-// const App = () => {
-//   return React.createElement("BrowserRouter", {}, [
-//     React.createElement("h1", {}, "Adopt Me!"),
-//     React.createElement(Pet, {
-//       name: "Luna",
-//       animal: "Dog",
-//       breed: "Havanese",
-//     }),
-//     React.createElement(Pet, {
-//       name: "Bird",
-//       animal: "Pepper",
-//       breed: "Cockatiel",
-//     }),
-//     React.createElement(Pet, {
-//       name: "Cat",
-//       animal: "Doink",
-//       breed: "Mixed",
-//     }),
-//   ]);
-// };
-
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
