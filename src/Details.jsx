@@ -25,7 +25,7 @@ const Details = () => {
   const pet = results.data.pets[0];
   // console.log(pet.i  mages);
   return (
-    <div className="details">
+    <div className="p-15 border-r-6 my-0 mx-auto mb-[25px] w-[1100px] bg-[#faeff0]">
       <Carousel images={pet.images} />
       <div>
         <h1>{pet.name}</h1>
