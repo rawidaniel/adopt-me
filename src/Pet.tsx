@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
-// import React from "react";
+import { Animal } from "./ApiResponsesTypes";
 
-// const Pet = (props) => {
-//   return React.createElement("div", {}, [
-//     React.createElement("h1", {}, props.name),
-//     React.createElement("h2", {}, props.animal),
-//     React.createElement("h2", {}, props.breed),
-//   ]);
-// };
+interface Props {
+  animal: Animal;
+  name: string;
+  breed: string;
+  images: string[];
+  location: string;
+  id: number;
+}
 
-const Pet = ({ animal, name, breed, images, location, id }) => {
+const Pet = (props: Props) => {
+  const { animal, name, breed, images, location, id } = props;
   let hero = "http://pets-images.dev-apis.com/pets/none.jpg";
 
   if (images.length) {

@@ -1,6 +1,13 @@
 import Pet from "./Pet";
+import { Pet as PetType } from "./ApiResponsesTypes";
 
-const Results = ({ pets, isLoading }) => {
+const Results = ({
+  pets,
+  isLoading,
+}: {
+  pets: PetType[];
+  isLoading: boolean;
+}) => {
   // console.log(isLoading);
   return (
     <div className="search">

@@ -4,14 +4,18 @@ import { useQuery } from "@tanstack/react-query";
 import fetchPet from "./fetchPet";
 import Carousel from "./Carousel";
 import ErrorBoundary from "./ErrorBoundary";
-import Modal from "./modal";
+import Modal from "./Modal";
 import AdoptedPetContext from "./AdoptedPetContext";
 
 const Details = () => {
-  const naviagte = useNavigate();
-  const [_, setAdoptedpet] = useContext(AdoptedPetContext); // eslint-disable-line no-unused-vars
-  const [showModal, setShowModal] = useState(false);
   const { id } = useParams();
+
+  if (!id) {
+    throw new Error("There is no id.");
+  }
+  const naviagte = useNavigate();
+  const [_, setAdoptedpet] = useContext(AdoptedPetContext); // eslint-disable-line @typescript-eslint/no-unused-vars
+  const [showModal, setShowModal] = useState(false);
   const results = useQuery(["details", id], fetchPet);
 
   if (results.isLoading) {
@@ -22,7 +26,11 @@ const Details = () => {
     );
   }
 
-  const pet = results.data.pets[0];
+  const pet = results?.data?.pets[0];
+
+  if (!pet) {
+    throw new Error("There is no pet");
+  }
   // console.log(pet.i  mages);
   return (
     <div className="details">
@@ -57,10 +65,10 @@ const Details = () => {
   );
 };
 
-function DetailErrorBoundary(props) {
+function DetailErrorBoundary() {
   return (
     <ErrorBoundary>
-      <Details {...props} />
+      <Details />
     </ErrorBoundary>
   );
 }
