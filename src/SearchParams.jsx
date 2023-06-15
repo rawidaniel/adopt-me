@@ -1,24 +1,25 @@
-import { useState, useContext } from "react";
-import { useQuery } from "@tanstack/react-query";
-import fetchSearch from "./fetchSearch";
+// import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import useBreedList from "./useBreedList";
 import Results from "./Results";
-import AdoptedPetContext from "./AdoptedPetContext";
+import { all } from "./searchParamsSlice";
+import { useSearchQuery } from "./petApiService";
+// import fetchSearch from "./fetchSearch";
 
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "reptile"];
 
 const SearchParams = () => {
-  const [adoptedPet] = useContext(AdoptedPetContext);
-  const [requestParams, setRequestParams] = useState({
-    animal: "",
-    breed: "",
-    location: "",
-  });
+  const adoptedPet = useSelector((state) => state.adoptedPet.value);
+  const dispatch = useDispatch();
+  const searchParams = useSelector((state) => state.searchParams.value);
   const [animal, setAnimal] = useState("");
   const [breeds] = useBreedList(animal);
 
-  const results = useQuery(["search", requestParams], fetchSearch);
-  const pets = results?.data?.pets ?? [];
+  // const results = useQuery(["search", searchParams], fetchSearch);
+  let { isLoading, data: pets } = useSearchQuery(searchParams);
+  pets = pets ?? [];
+  // const pets = results?.data?.pets ?? [];
 
   return (
     <div className="search-params">
@@ -28,11 +29,11 @@ const SearchParams = () => {
           e.preventDefault();
           const formData = new FormData(e.target);
           const obj = {
-            animal: formData.get("animal") ?? "",
-            breed: formData.get("breed") ?? "",
-            location: formData.get("location") ?? "",
+            animal: formData.get("animal").toString() ?? "",
+            breed: formData.get("breed").toString() ?? "",
+            location: formData.get("location").toString() ?? "",
           };
-          setRequestParams(obj);
+          dispatch(all(obj));
         }}
       >
         {adoptedPet && (
@@ -74,7 +75,7 @@ const SearchParams = () => {
         </label>
         <button>Submit</button>
       </form>
-      <Results pets={pets} isLoading={results.isLoading} />
+      <Results pets={pets} isLoading={isLoading} />
     </div>
   );
 };
