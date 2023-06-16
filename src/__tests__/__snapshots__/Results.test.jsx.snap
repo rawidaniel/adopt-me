@@ -1,0 +1,97 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`renders correctly with no pets 1`] = `
+<DocumentFragment>
+  <div
+    class="search"
+  >
+    <h1>
+      No Pets Found
+    </h1>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders correctly with pets 1`] = `
+<DocumentFragment>
+  <div
+    class="search"
+  >
+    <h2>
+      Please wait while isLoading.....
+    </h2>
+    <a
+      class="pet"
+      href="/details/1"
+    >
+      <div
+        class="image-container"
+      >
+        <img
+          alt="Luna"
+          data-testid="thumbnail"
+          src="http://pets-images.dev-apis.com/pets/dog25.jpg"
+        />
+      </div>
+      <div
+        class="info"
+      >
+        <h1>
+          Luna
+        </h1>
+        <h2>
+          dog - Havanese - Seattle, WA
+        </h2>
+      </div>
+    </a>
+    <a
+      class="pet"
+      href="/details/2"
+    >
+      <div
+        class="image-container"
+      >
+        <img
+          alt="Charisse"
+          data-testid="thumbnail"
+          src="http://pets-images.dev-apis.com/pets/rabbit0.jpg"
+        />
+      </div>
+      <div
+        class="info"
+      >
+        <h1>
+          Charisse
+        </h1>
+        <h2>
+          rabbit - Havanese - Lexington, KY
+        </h2>
+      </div>
+    </a>
+    <a
+      class="pet"
+      href="/details/3"
+    >
+      <div
+        class="image-container"
+      >
+        <img
+          alt="Maitilde"
+          data-testid="thumbnail"
+          src="http://pets-images.dev-apis.com/pets/rabbit1.jpg"
+        />
+      </div>
+      <div
+        class="info"
+      >
+        <h1>
+          Maitilde
+        </h1>
+        <h2>
+          rabbit - Lab - Dallas, TX
+        </h2>
+      </div>
+    </a>
+  </div>
+</DocumentFragment>
+`;
